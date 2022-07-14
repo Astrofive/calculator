@@ -20,7 +20,7 @@ body {
     margin: 75px auto;
 }
 
-#screen {
+#display {
     color: white;
     display: flex;
     justify-content: right;

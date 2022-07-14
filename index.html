@@ -8,13 +8,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <title>Calculator</title>
     
 </head>
 <body>
     <div id="calculator">
-        <div id="screen">1234</div>
+        <div id="display">0</div>
         <div id="buttons">
             <div id="buttonrow1">
                 <button id="clear">AC</button>
@@ -23,25 +23,25 @@
                 <button class="divide">/</button>
             </div>
             <div id="buttonrow2">
-                <button id="7">7</button>
-                <button id="8">8</button>
-                <button id="9">9</button>
+                <button id="7" class="operand">7</button>
+                <button id="8" class="operand">8</button>
+                <button id="9" class="operand">9</button>
                 <button id="multiply">X</button>
             </div>
             <div id="buttonrow3">
-                <button id="4">4</button>
-                <button id="5">5</button>
-                <button id="6">6</button>
+                <button id="4" class="operand">4</button>
+                <button id="5" class="operand">5</button>
+                <button id="6" class="operand">6</button>
                 <button id="minus">-</button>
             </div>
             <div id="buttonrow4">
-                <button id="1">1</button>
-                <button id="2">2</button>
-                <button id="3">3</button>
+                <button id="1" class="operand">1</button>
+                <button id="2" class="operand">2</button>
+                <button id="3" class="operand">3</button>
                 <button id="plus">+</button>
             </div>
             <div id="buttonrow5">
-                <button id="0">0</button>
+                <button id="0" class="operand">0</button>
                 <button id="decimal">.</button>
                 <button id="equal">=</button>
             </div>
