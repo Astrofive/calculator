@@ -1,6 +1,17 @@
+//howdy
 let displayValue = 0;
 let firstOperator = null;
 let secondOperator = null;
+let operatorWasJustClicked = null;
+
+function clearAll(){
+    displayValue = 0;
+    firstOperator = null;
+    secondOperator = null;
+    operatorWasJustClicked = null;
+    const display = document.getElementById('display');
+    display.textContent = displayValue;
+}
 
 function Add(a, b){
     return a + b;
@@ -39,8 +50,15 @@ function operandClick(value){
 }
 
 function operatorClick(id){
-    console.log(id);
+    if (firstOperator === null){
+        firstOperator = id;
+    } else {
+        secondOperator = id;
+    }
+    
 }
+
+
 
 //operands (numbers)
 const operands = document.querySelectorAll('.operand');
@@ -56,4 +74,10 @@ operators.forEach(operator => {
     operator.addEventListener('click', () => {
         operatorClick(operator.id);
     });
+});
+
+//equals
+const clearButton = document.querySelector('#clear');
+clearButton.addEventListener('click', () => {
+    clearAll();
 });
