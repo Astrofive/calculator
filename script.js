@@ -44,6 +44,7 @@ function Operate(a, operator, b){
         case "plus": return Add(a, b); break;
         case "multiply": return Multiply(a, b); break;
         case "divide": return Divide(a, b); break;
+        case "equal": return b; break;
     }
 }
 
@@ -64,19 +65,18 @@ function operatorClick(id){
     // lock in the display num
     if (!firstOperand){
         firstOperand = displayValue;
-    } else {
+    } else if (!operatorJustClicked){
         secondOperand = displayValue;
     }
     // if there's no first operator or no second operand has been entered (to let you change the operator)
     if (!firstOperator || !secondOperand){
         firstOperator = id
-    } else if (id === "equal"){
+    } else {
         displayValue = Operate(firstOperand, firstOperator, secondOperand);
         updateDisplay();
+        firstOperand = displayValue;
+        secondOperand = null; // Important part. This clears second num to let user continue equation
     }
-    
-    
-
     operatorJustClicked = true;
 }
 
