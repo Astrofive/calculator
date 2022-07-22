@@ -9,6 +9,10 @@ function clearAll(){
     firstOperator = null;
     secondOperator = null;
     operatorWasJustClicked = null;
+    updateDisplay();
+}
+
+function updateDisplay(){
     const display = document.getElementById('display');
     display.textContent = displayValue;
 }
@@ -45,8 +49,7 @@ function operandClick(value){
     } else {
         displayValue = parseInt(displayValue.toString() + value.toString());
     }
-    const display = document.getElementById('display');
-    display.textContent = displayValue;
+    updateDisplay();
 }
 
 function operatorClick(id){
@@ -56,6 +59,21 @@ function operatorClick(id){
         secondOperator = id;
     }
     
+}
+
+function functionButtonClick(id){
+    if (id === 'clear') clearAll();
+    if (id === 'plusminus'); plusMinus();
+    if (id === 'percent'); // percent();
+}
+
+function plusMinus(){
+    if (displayValue >= 0){
+        displayValue = parseInt("-" + displayValue.toString());
+    } else if (displayValue < 0){
+        displayValue = parseInt(displayValue.toString().substring(1));
+    } else { console.log("something went wrong in plusMinus()")}
+    updateDisplay();
 }
 
 
@@ -76,8 +94,10 @@ operators.forEach(operator => {
     });
 });
 
-//equals
-const clearButton = document.querySelector('#clear');
-clearButton.addEventListener('click', () => {
-    clearAll();
+//function buttons (ac, +/-, %)
+const functionButtons = document.querySelectorAll('.functionbutton');
+functionButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        functionButtonClick(button.id);
+    });
 });
