@@ -27,12 +27,20 @@ function Operate(a, operator, b){
 }
 
 function operandClick(value){
+    if (displayValue === 0){
+        displayValue = value;
+    } else {
+        displayValue = parseInt(displayValue.toString() + value.toString());
+    }
     const display = document.getElementById('display');
-    displayValue *= 10;
-    console.log(`displayvalue is now ${displayValue}`);
-    displayValue += value;
-    console.log(`displayvalue is now ${displayValue}`);
     display.textContent = displayValue;
+
+
+    // displayValue *= 10;
+    // console.log(`displayvalue is now ${displayValue}`);
+    // displayValue += value;
+    // console.log(`displayValue is now ${displayValue}`);
+    // display.textContent = displayValue;
 }
 
 const operands = document.querySelectorAll('.operand');
