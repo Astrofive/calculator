@@ -1,4 +1,6 @@
 let displayValue = 0;
+let firstOperator = null;
+let secondOperator = null;
 
 function Add(a, b){
     return a + b;
@@ -34,18 +36,24 @@ function operandClick(value){
     }
     const display = document.getElementById('display');
     display.textContent = displayValue;
-
-
-    // displayValue *= 10;
-    // console.log(`displayvalue is now ${displayValue}`);
-    // displayValue += value;
-    // console.log(`displayValue is now ${displayValue}`);
-    // display.textContent = displayValue;
 }
 
+function operatorClick(id){
+    console.log(id);
+}
+
+//operands (numbers)
 const operands = document.querySelectorAll('.operand');
 operands.forEach(operand => {
     operand.addEventListener('click', () => {
         operandClick(parseInt(operand.textContent));
+    });
+});
+
+//operators 
+const operators = document.querySelectorAll('.operator');
+operators.forEach(operator => {
+    operator.addEventListener('click', () => {
+        operatorClick(operator.id);
     });
 });
