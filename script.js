@@ -1,14 +1,18 @@
 //howdy
 let displayValue = 0;
+let firstOperand = null;
+let secondOperand = null;
 let firstOperator = null;
 let secondOperator = null;
-let operatorWasJustClicked = null;
+let operatorJustClicked = null;
 
 function clearAll(){
     displayValue = 0;
+    firstOperand = null;
+    secondOperand = null;
     firstOperator = null;
     secondOperator = null;
-    operatorWasJustClicked = null;
+    operatorJustClicked = null;
     updateDisplay();
 }
 
@@ -36,44 +40,58 @@ function Divide(a, b) {
 
 function Operate(a, operator, b){
     switch(operator){
-        case "-": return Subtract(a, b); break;
-        case "+": return Add(a, b); break;
-        case "x": return Multiply(a, b); break;
-        case "/": return Divide(a, b); break;
+        case "minus": return Subtract(a, b); break;
+        case "plus": return Add(a, b); break;
+        case "multiply": return Multiply(a, b); break;
+        case "divide": return Divide(a, b); break;
     }
 }
 
 function operandClick(value){
+    if (operatorJustClicked){
+        displayValue = 0;
+        operatorJustClicked = false;
+    }
     if (displayValue === 0){
         displayValue = value;
     } else {
-        displayValue = parseInt(displayValue.toString() + value.toString());
+        displayValue = Number(displayValue.toString() + value.toString());
     }
     updateDisplay();
 }
 
 function operatorClick(id){
-    if (firstOperator === null){
-        firstOperator = id;
+    // lock in the display num
+    if (!firstOperand){
+        firstOperand = displayValue;
     } else {
-        secondOperator = id;
+        secondOperand = displayValue;
+    }
+    // if there's no first operator or no second operand has been entered (to let you change the operator)
+    if (!firstOperator || !secondOperand){
+        firstOperator = id
+    } else if (id === "equal"){
+        displayValue = Operate(firstOperand, firstOperator, secondOperand);
+        updateDisplay();
     }
     
+    
+
+    operatorJustClicked = true;
 }
 
 function functionButtonClick(id){
     if (id === 'clear') clearAll();
-    if (id === 'plusminus'); plusMinus();
-    if (id === 'percent'); // percent();
+    if (id === 'plusminus') plusMinus();
+    if (id === 'percent'); // percent() to be created;
 }
-
 function plusMinus(){
     if (displayValue >= 0){
-        displayValue = parseInt("-" + displayValue.toString());
+        displayValue = Number("-" + displayValue.toString());
     } else if (displayValue < 0){
-        displayValue = parseInt(displayValue.toString().substring(1));
+        displayValue = Number(displayValue.toString().substring(1));
     } else { console.log("something went wrong in plusMinus()")}
-    updateDisplay();
+    updateDisplay();    
 }
 
 
@@ -82,7 +100,7 @@ function plusMinus(){
 const operands = document.querySelectorAll('.operand');
 operands.forEach(operand => {
     operand.addEventListener('click', () => {
-        operandClick(parseInt(operand.textContent));
+        operandClick(Number(operand.textContent));
     });
 });
 
