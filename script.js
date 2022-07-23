@@ -21,28 +21,17 @@ function updateDisplay(){
     display.textContent = displayValue;
 }
 
-function Add(a, b){
-    return a + b;
-}
-
-function Subtract(a, b){
-    return a - b;
-}
-
-function Multiply(a, b){
-    return a * b;
-}
 
 function Divide(a, b) {
-    if (b === 0) return 0;
+    if (b === 0) return "Lol";
     return a / b;
 }
 
 function Operate(a, operator, b){
     switch(operator){
-        case "minus": return Subtract(a, b); break;
-        case "plus": return Add(a, b); break;
-        case "multiply": return Multiply(a, b); break;
+        case "minus": return (a - b); break;
+        case "plus": return (a + b); break;
+        case "multiply": return (a * b); break;
         case "divide": return Divide(a, b); break;
         case "equal": return b; break;
     }
